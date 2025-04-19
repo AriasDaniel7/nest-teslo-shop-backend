@@ -1,0 +1,68 @@
+danielarias.site {
+        encode gzip zstd
+        reverse_proxy localhost:3000
+
+        header {
+                Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+                X-Frame-Options "DENY"
+                X-Content-Type-Options "nosniff"
+                Referrer-Policy "strict-origin-when-cross-origin"
+                Permissions-Policy "geolocation=(), microphone=(), camera=()"
+                Cache-Control "no-store"
+                X-XSS-Protection "1; mode=block"
+        }
+
+        header -Server
+
+        log {
+                output file /var/log/caddy/danielarias-access.log {
+                        format single_field common_log
+                }
+        }
+}
+
+db.danielarias.site {
+        encode gzip zstd
+        reverse_proxy localhost:8080
+
+        header {
+                Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+                X-Frame-Options "DENY"
+                X-Content-Type-Options "nosniff"
+                Referrer-Policy "strict-origin-when-cross-origin"
+                Permissions-Policy "geolocation=(), microphone=(), camera=()"
+                Cache-Control "no-store"
+                X-XSS-Protection "1; mode=block"
+        }
+
+        header -Server
+
+        log {
+                output file /var/log/caddy/db.danielarias-access.log {
+                        format single_field common_log
+                }
+        }
+}
+
+teslo-shop.danielarias.site {
+        encode gzip zstd
+        reverse_proxy localhost:3002
+
+        header {
+                Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+                X-Frame-Options "DENY"
+                X-Content-Type-Options "nosniff"
+                Referrer-Policy "strict-origin-when-cross-origin"
+                Permissions-Policy "geolocation=(), microphone=(), camera=()"
+                Cache-Control "no-store"
+                X-XSS-Protection "1; mode=block"
+        }
+
+        header -Server
+
+        log {
+                output file /var/log/caddy/teslo-shop.danielarias-access.log {
+                        format single_field common_log
+                }
+        }
+}

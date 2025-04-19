@@ -10,7 +10,9 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
-  app.enableCors();
+  app.enableCors({
+    origin: 'https://teslo-shop.danielarias.site',
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
