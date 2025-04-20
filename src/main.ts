@@ -11,7 +11,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   app.enableCors({
-    origin: ['http://167.88.36.91', 'https://teslo-shop.danielarias.site'],
+    origin: ['http://localhost:3002', 'https://teslo-shop.danielarias.site'],
     credentials: true,
   });
 
@@ -30,7 +30,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(process.env.PORT, '0.0.0.0');
+  await app.listen(process.env.PORT);
   logger.log(`App running on port ${process.env.PORT}`);
 }
 bootstrap();
