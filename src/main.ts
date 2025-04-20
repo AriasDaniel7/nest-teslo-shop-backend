@@ -10,8 +10,14 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
+  const corsOrigins = process.env.CORS?.split(',').map((origin) =>
+    origin.trim(),
+  );
+
+  console.log({ corsOrigins });
+
   app.enableCors({
-    origin: ['http://167.88.36.91:3002', 'https://teslo-shop.danielarias.site'],
+    origin: corsOrigins,
     credentials: true,
   });
 
