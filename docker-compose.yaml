@@ -1,15 +1,43 @@
-version: '3'
-
-
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: teslo-shop-app
+    ports:
+      - 3000:${PORT}
+    environment:
+      STAGE: ${STAGE}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: db
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      PORT: ${PORT}
+      HOST_API: ${HOST_API}
+      JWT_SECRET: ${JWT_SECRET}
+      CORS: ${CORS}
+    networks:
+      - teslo-shop-network
+    depends_on:
+      - db
+
   db:
-    image: postgres:14.3
+    image: postgres:17.4
     restart: always
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
     container_name: teslodb
     volumes:
       - ./postgres:/var/lib/postgresql/data
+    networks:
+      - teslo-shop-network
+
+networks:
+  teslo-shop-network:
+    driver: bridge
