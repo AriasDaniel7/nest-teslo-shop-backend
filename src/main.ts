@@ -11,7 +11,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   app.enableCors({
-    origin: ['http://167.88.36.91:3002', 'https://teslo-shop.danielarias.site'],
+    origin: ['http://localhost:3002', 'https://teslo-shop.danielarias.site'],
     credentials: true,
   });
 
